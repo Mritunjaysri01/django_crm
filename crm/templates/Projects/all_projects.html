@@ -1,0 +1,926 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="fairsketch">
+    <link rel="icon" href="assets/images/favicon.png" />
+
+    <title>CRM</title>
+    <script type="text/javascript">
+        AppHelper = {};
+        AppHelper.baseUrl = "";
+        AppHelper.assetsDirectory = "assets/";
+        AppHelper.settings = {};
+        AppHelper.settings.firstDayOfWeek = 1;
+        AppHelper.settings.currencySymbol = "Rs.";
+        AppHelper.settings.decimalSeparator = ".";
+    </script>
+    <link rel='stylesheet' type='text/css' href="{%'assets/bootstrap/css/bootstrap.min.css' % } " />
+    <link rel='stylesheet' type='text/css' href="{% 'assets/js/font-awesome/css/font-awesome.min.css' % } " />
+    <link rel='stylesheet' type='text/css' href="{% 'assets/js/datatable/css/jquery.dataTables.min.css' % } " />
+    <link rel='stylesheet' type='text/css' href="{% 'assets/js/datatable/TableTools/css/dataTables.tableTools.min.css' % } " />
+    <link rel='stylesheet' type='text/css' href="{% 'assets/js/select2/select2.css' % } " />
+    <link rel='stylesheet' type='text/css' href="{% 'assets/js/select2/select2-bootstrap.min.css' % } " />
+    <link rel='stylesheet' type='text/css' href="{% 'assets/js/bootstrap-datepicker/css/datepicker3.css' % } " />
+    <link rel='stylesheet' type='text/css' href="{% 'assets/js/bootstrap-timepicker/css/bootstrap-timepicker.min.css' % } " />
+    <link rel='stylesheet' type='text/css' href="{% 'assets/js/x-editable/css/bootstrap-editable.css' % } " />
+    <link rel='stylesheet' type='text/css' href="{% 'assets/css/font.css' % } " />
+    <link rel='stylesheet' type='text/css' href="{% 'assets/css/style.css' % } " />
+    <script type='text/javascript' src="{% 'assets/js/jquery-1.11.3.min.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/bootstrap/js/bootstrap.min.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/jquery-validation/jquery.validate.min.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/jquery-validation/jquery.form.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/slimscroll/jquery.slimscroll.min.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/datatable/js/jquery.dataTables.min.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/select2/select2.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/datatable/TableTools/js/dataTables.tableTools.min.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/bootstrap-datepicker/js/bootstrap-datepicker.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/bootstrap-timepicker/js/bootstrap-timepicker.min.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/x-editable/js/bootstrap-editable.min.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/fullcalendar/moment.min.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/notificatoin_handler.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/general_helper.js' % } "></script>
+    <script type='text/javascript' src="{% 'assets/js/app.min.js' % } "></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="fa fa-cog"></span>
+        </button>
+            <button id="sidebar-toggle" type="button" class="navbar-toggle" data-target="#sidebar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-bars"></span>
+        </button>
+            <a class="navbar-brand" href="index.php/dashboard"><img src="files/system/file5e969fdef1e5b-site-logo.png" /></a>
+
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+
+                <li class="hidden-xs pl15 pr15  b-l">
+                    <button class="hidden-xs" id="sidebar-toggle-md">
+                    <span class="fa fa-dedent"></span>
+                </button>
+                </li>
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="hidden-xs ">
+                    <a href="#" id="message-notification-icon" class="dropdown-toggle" data-toggle="dropdown"><i class='fa fa-envelope-o'></i></a>
+                    <div class="dropdown-menu aside-xl m0 p0 w300 font-100p">
+                        <div class="dropdown-details panel bg-white m0">
+                            <div class="list-group">
+                                <span class="list-group-item"> You have no new messages</span>
+                            </div>
+                        </div>
+                        <div class="panel-footer text-sm text-center">
+                            <a href="index.php/messages">See All</a> </div>
+                    </div>
+                </li>
+                <li class="dropdown pr15 dropdown-user">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <span class="avatar-xs avatar pull-left mt-5 mr10">
+                        <img alt="..." src="assets/images/avatar.jpg">
+                    </span>Demo test <span class="caret"></span></a>
+                    <ul class="dropdown-menu p0" role="menu">
+                        <li><a href="index.php/team_members/view/1/general"><i class='fa fa-user mr10'></i>My Profile</a></li>
+                        <li><a href="index.php/team_members/view/1/account"><i class='fa fa-key mr10'></i>Change Password</a></li>
+                        <li class="divider"></li>
+                        <li><a href="index.php/signin/sign_out"><i class="fa fa-power-off mr10"></i> Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </nav>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //load message notifications
+
+            var messageOptions = {},
+                $messageIcon = $("#message-notification-icon");
+
+            messageOptions.notificationUrl = "index.php/messages/get_notifications";
+            messageOptions.notificationStatusUpdateUrl = "index.php/messages/update_notification_checking_status";
+            messageOptions.checkNotificationAfterEvery = "60";
+            messageOptions.notificationSelector = $messageIcon;
+            checkMessageNotifications(messageOptions);
+
+            $messageIcon.click(function() {
+                checkMessageNotifications(messageOptions, true);
+            });
+        });
+    </script>
+    <div id="content" class="box">
+        <div id="sidebar" class="box-content ani-width">
+            <div id="sidebar-scroll">
+                <ul class="" id="sidebar-menu">
+                    <li class="active    main">
+                        <a href="dashboard.html">
+                            <i class="fa fa-desktop"></i>
+                            <span>Dashboard</span>
+                    </li>
+                    </a>
+                    <li class="    main">
+                        <a href="/crm/templates/timeline.html">
+                            <i class="fa  fa-comments font-18"></i>
+                            <span>Timeline</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="/crm/templates/events.html">
+                            <i class="fa fa-calendar"></i>
+                            <span>Events</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="/crm/templates/notes.html">
+                            <i class="fa fa-book font-16"></i>
+                            <span>Notes</span>
+                        </a>
+                    </li>
+                    <li class="   devider main">
+                        <a href="/crm/templates/messages.html">
+                            <i class="fa fa-envelope"></i>
+                            <span>Messages</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="/crm/templates/clients.html">
+                            <i class="fa fa-briefcase"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="  expand    main">
+                        <a href="/crm/templates/projects.html">
+                            <i class="fa fa-th-large"></i>
+                            <span>Projects</span>
+                        </a>
+                        <ul>
+                            <li class="">
+                                <a href="/crm/templates/Projects/all_projects.html">
+                                    <i class="dot fa fa-circle"></i>
+                                    <span>All Projects</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/crm/templates/Projects/my_tasks.html">
+                                    <i class="dot fa fa-circle"></i>
+                                    <span>My Tasks</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="    main">
+                        <a href="/crm/templates/invoices.html">
+                            <i class="fa fa-file-text"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="  expand    main">
+                        <a href="/crm/templates/expenses.html">
+                            <i class="fa fa-money"></i>
+                            <span>Finance</span>
+                        </a>
+                        <ul>
+                            <li class="">
+                                <a href="/crm/templates/invoice_payments.html">
+                                    <i class="dot fa fa-circle"></i>
+                                    <span>Payments</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/crm/templates/expenses.html">
+                                    <i class="dot fa fa-circle"></i>
+                                    <span>Expenses</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="   devider main">
+                        <a href="/crm/templates/tickets.html">
+                            <i class="fa fa-life-ring"></i>
+                            <span>Tickets</span>
+                            <span class='badge badge-secondary'>1</span> </a>
+                    </li>
+                    <li class="    main">
+                        <a href="/crm/templates/team_members.html">
+                            <i class="fa fa-user font-16"></i>
+                            <span>Team members</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="/crm/templates/attendance.html">
+                            <i class="fa fa-clock-o font-16"></i>
+                            <span>Time cards</span>
+                        </a>
+                    </li>
+                    <li class="   devider main">
+                        <a href="/crm/templates/leaves.html">
+                            <i class="fa fa-sign-out font-16"></i>
+                            <span>Leave</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="/crm/templates/announcements.html">
+                            <i class="fa fa-bullhorn"></i>
+                            <span>Announcements</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="/crm/templates/settings/general.html">
+                            <i class="fa fa-wrench"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- sidebar menu end -->
+        <div id="page-container" class="box-content">
+            <div id="pre-loader">
+                <div id="pre-loade" class="app-loader">
+                    <div class="loading"></div>
+                </div>
+            </div>
+            <div class="scrollable-page">
+                <div id="page-content" class="p20 clearfix">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 widget-container">
+                            <div class="panel panel-info">
+                                <div class="panel-body ">
+                                    <div class="widget-icon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <div class="widget-details">
+                                        <div class='mb15' title='20/07/2020 06:21 PM'>Clock started at : 06:21 PM</div>
+                                        <a href="#" class="btn btn-default no-border" title="Clock Out" data-inline-loader="1" data-closest-target=".widget-container" data-act="ajax-request" data-action-url="index.php/attendance/log_time"><i class='fa fa-sign-out'></i> Clock Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6  widget-container">
+                            <div class="panel panel-sky">
+                                <div class="panel-body ">
+                                    <div class="widget-icon">
+                                        <i class="fa fa-tasks"></i>
+                                    </div>
+                                    <div class="widget-details">
+                                        <h1>0</h1>
+                                        <a href="index.php/projects/my_tasks" class="white-link">My open tasks</a> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6  widget-container">
+                            <div class="panel panel-success">
+                                <div class="panel-body ">
+                                    <div class="widget-icon">
+                                        <i class="fa fa-calendar-check-o"></i>
+                                    </div>
+                                    <div class="widget-details">
+                                        <h1>0</h1>
+                                        <a href="index.php/events" class="white-link">Events today</a> </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6  widget-container">
+                            <div class="panel panel-primary">
+                                <div class="panel-body ">
+                                    <div class="widget-icon">
+                                        <i class="fa fa-comments"></i>
+                                    </div>
+                                    <div class="widget-details">
+                                        <h1>0</h1>
+                                        <a href="index.php/timeline" class="white-link">New posts</a> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="row">
+                                <div class="col-md-12 mb20 text-center">
+                                    <div class="bg-white">
+                                        <div class="box">
+                                            <div class="box-content widget-container b-r">
+                                                <div class="panel-body ">
+                                                    <h1 class="">5</h1>
+                                                    <span class="text-off uppercase">Open Projects</span>
+                                                </div>
+                                            </div>
+                                            <div class="box-content widget-container ">
+                                                <div class="panel-body ">
+                                                    <h1>3</h1>
+                                                    <span class="text-off uppercase">Projects Completed</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box b-t bg-white">
+                                            <div class="box-content widget-container b-r">
+                                                <div class="panel panel-default mb0 no-boxshadow">
+                                                    <div class="panel-body ">
+                                                        <h1>7</h1>
+                                                        <span class="text-off uppercase">Members Clocked In</span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="box-content widget-container">
+                                                <div class="panel panel-default mb0 b-l no-boxshadow">
+                                                    <div class="panel-body ">
+                                                        <h1 class="">17</h1>
+                                                        <span class="text-off uppercase">Members Clocked Out</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <i class="fa fa fa-file-text-o"></i>&nbsp; Invoice Statistics </div>
+                                        <div class="panel-body ">
+                                            <div id="timesheet-statistics-flotchart" style="width: 100%; height: 300px;"></div>
+                                        </div>
+                                    </div>
+
+                                    <script type="text/javascript">
+                                        $(document).ready(function() {
+                                            var invoiceStatisticsFlotchart = function() {
+                                                var invoices = [
+                                                        [1, "0"],
+                                                        [2, "20400"],
+                                                        [3, "0"],
+                                                        [4, "16320"],
+                                                        [5, "22760"],
+                                                        [6, 0],
+                                                        [7, "29500"],
+                                                        [8, "14683.92"],
+                                                        [9, 0],
+                                                        [10, 0],
+                                                        [11, 0],
+                                                        [12, 0]
+                                                    ],
+                                                    payments = [
+                                                        [1, 0],
+                                                        [2, "10000"],
+                                                        [3, 0],
+                                                        [4, "135000"],
+                                                        [5, "40000"],
+                                                        [6, 0],
+                                                        [7, 0],
+                                                        [8, 0],
+                                                        [9, 0],
+                                                        [10, 0],
+                                                        [11, 0],
+                                                        [12, 0]
+                                                    ],
+                                                    dataset = [{
+                                                        label: "Invoice",
+                                                        data: invoices,
+                                                        color: "rgba(220,220,220,1)",
+                                                        lines: {
+                                                            show: true,
+                                                            fill: 0.2
+                                                        },
+                                                        shadowSize: 0
+                                                    }, {
+                                                        data: invoices,
+                                                        color: "#fff",
+                                                        lines: {
+                                                            show: false
+                                                        },
+                                                        points: {
+                                                            show: true,
+                                                            fill: true,
+                                                            radius: 4,
+                                                            fillColor: "rgba(210,210,220,1)",
+                                                            lineWidth: 2
+                                                        },
+                                                        curvedLines: {
+                                                            apply: false
+                                                        },
+                                                        shadowSize: 0
+                                                    }, {
+                                                        label: "Payment",
+                                                        data: payments,
+                                                        color: "rgba(0, 179, 147, 1)",
+                                                        lines: {
+                                                            show: true,
+                                                            fill: 0.2
+                                                        },
+                                                        shadowSize: 0
+                                                    }, {
+                                                        data: payments,
+                                                        color: "#fff",
+                                                        lines: {
+                                                            show: false
+                                                        },
+                                                        curvedLines: {
+                                                            apply: false
+                                                        },
+                                                        points: {
+                                                            show: true,
+                                                            fill: true,
+                                                            radius: 4,
+                                                            fillColor: "#00B393",
+                                                            lineWidth: 2
+                                                        },
+                                                        shadowSize: 0
+                                                    }];
+
+                                                $.plot("#timesheet-statistics-flotchart", dataset, {
+                                                    series: {
+                                                        lines: {
+                                                            show: true,
+                                                            fill: 0.3
+                                                        },
+                                                        shadowSize: 0,
+                                                        curvedLines: {
+                                                            apply: true,
+                                                            active: true
+                                                        }
+                                                    },
+                                                    legend: {
+                                                        show: true
+                                                    },
+                                                    yaxis: {
+                                                        min: 0
+                                                    },
+                                                    xaxis: {
+                                                        ticks: [
+                                                            [1, "Jan"],
+                                                            [2, "Feb"],
+                                                            [3, "Mar"],
+                                                            [4, "Apr"],
+                                                            [5, "May"],
+                                                            [6, "Jun"],
+                                                            [7, "Jul"],
+                                                            [8, "Aug"],
+                                                            [9, "Sep"],
+                                                            [10, "Oct"],
+                                                            [11, "Nov"],
+                                                            [12, "Dec"]
+                                                        ]
+                                                    },
+                                                    grid: {
+                                                        color: "#bbb",
+                                                        hoverable: true,
+                                                        borderWidth: 0,
+                                                        backgroundColor: '#FFF'
+                                                    },
+                                                    tooltip: true,
+                                                    tooltipOpts: {
+                                                        content: function(x, y, z) {
+                                                            if (x) {
+                                                                return "%s: " + toCurrency(z);
+                                                            } else {
+                                                                return toCurrency(z);
+                                                            }
+                                                        },
+                                                        defaultTheme: false
+                                                    }
+                                                });
+
+                                            };
+
+                                            invoiceStatisticsFlotchart();
+                                        });
+                                    </script>
+
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 mb15">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <i class="fa fa-life-ring"></i>&nbsp;Ticket Status </div>
+                                        <div class="panel-body ">
+                                            <div id="ticket-status-flotchart" style="width: 100%; height: 300px;"></div>
+                                        </div>
+                                    </div>
+
+                                    <script type="text/javascript">
+                                        $(document).ready(function() {
+
+                                            var data = [{
+                                                label: " New",
+                                                data: "1" * 1,
+                                                color: "#F0AD4E"
+                                            }, {
+                                                label: " Open",
+                                                data: "2" * 1,
+                                                color: "#F06C71"
+                                            }, {
+                                                label: " Closed",
+                                                data: "9" * 1,
+                                                color: "#00B393"
+                                            }];
+
+                                            $.plot('#ticket-status-flotchart', data, {
+                                                series: {
+                                                    pie: {
+                                                        show: true,
+                                                        innerRadius: 0.5
+                                                    }
+                                                },
+                                                legend: {
+                                                    show: true
+                                                },
+                                                grid: {
+                                                    hoverable: true
+                                                },
+                                                tooltip: {
+                                                    show: true,
+                                                    content: "%s: %p.0%, %n", // show percentages, rounding to 2 decimal places
+                                                    shifts: {
+                                                        x: 20,
+                                                        y: 0
+                                                    },
+                                                    defaultTheme: false
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4 widget-container">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-clock-o"></i>&nbsp; Project Timeline </div>
+                                <div id="project-timeline-container">
+                                    <div class="panel-body">
+                                        <div class="media b-b mb15">
+                                            <div class="media-left">
+                                                <span class="avatar avatar-xs">
+            <img src="assets/images/avatar.jpg" alt="..." />
+        </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-heading">
+                                                    <a href="index.php/team_members/view/1" class="dark strong">Demo test</a> <small><span class="text-off">Jul 18 12:52 PM</span></small>
+                                                </div>
+                                                <p>
+                                                    <span class="label label-warning">Updated</span>
+                                                    <span>Task:  #6 - RMS ePOS devlopment</span>
+                                                    <ul>
+                                                        <li>Status: <del>In progress</del> <ins>Done</ins></li>
+                                                    </ul>
+                                                </p>
+
+                                                <p> Project: <a href="index.php/projects/view/32" class="dark">web design 2020</a></p>
+                                            </div>
+                                        </div>
+                                        <div class="media b-b mb15">
+                                            <div class="media-left">
+                                                <span class="avatar avatar-xs">
+            <img src="assets/images/avatar.jpg" alt="..." />
+        </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-heading">
+                                                    <a href="index.php/team_members/view/1" class="dark strong">Demo test</a> <small><span class="text-off">Jun 15 12:13 PM</span></small>
+                                                </div>
+                                                <p>
+                                                    <span class="label label-warning">Updated</span>
+                                                    <span>Task:  #6 - RMS ePOS devlopment</span>
+                                                    <ul>
+                                                        <li>Status: <del>To do</del> <ins>In progress</ins></li>
+                                                    </ul>
+                                                </p>
+
+                                                <p> Project: <a href="index.php/projects/view/32" class="dark">web design 2020</a></p>
+                                            </div>
+                                        </div>
+                                        <div class="media b-b mb15">
+                                            <div class="media-left">
+                                                <span class="avatar avatar-xs">
+            <img src="assets/images/avatar.jpg" alt="..." />
+        </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-heading">
+                                                    <a href="index.php/team_members/view/1" class="dark strong">Demo test</a> <small><span class="text-off">May 21 06:54 PM</span></small>
+                                                </div>
+                                                <p>
+                                                    <span class="label label-success">Added</span>
+                                                    <span>Milestone: Final Testing </span>
+                                                </p>
+
+                                                <p> Project: <a href="index.php/projects/view/32" class="dark">web design 2020</a></p>
+                                            </div>
+                                        </div>
+                                        <div class="media b-b mb15">
+                                            <div class="media-left">
+                                                <span class="avatar avatar-xs">
+            <img src="assets/images/avatar.jpg" alt="..." />
+        </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-heading">
+                                                    <a href="index.php/team_members/view/1" class="dark strong">Demo test</a> <small><span class="text-off">May 21 06:53 PM</span></small>
+                                                </div>
+                                                <p>
+                                                    <span class="label label-success">Added</span>
+                                                    <span>Milestone: beta epos</span>
+                                                </p>
+
+                                                <p> Project: <a href="index.php/projects/view/32" class="dark">web design 2020</a></p>
+                                            </div>
+                                        </div>
+                                        <div class="media b-b mb15">
+                                            <div class="media-left">
+                                                <span class="avatar avatar-xs">
+            <img src="assets/images/avatar.jpg" alt="..." />
+        </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-heading">
+                                                    <a href="index.php/team_members/view/1" class="dark strong">Demo test</a> <small><span class="text-off">May 21 06:52 PM</span></small>
+                                                </div>
+                                                <p>
+                                                    <span class="label label-success">Added</span>
+                                                    <span>Task:  #6 - RMS ePOS devlopment</span>
+                                                </p>
+
+                                                <p> Project: <a href="index.php/projects/view/32" class="dark">web design 2020</a></p>
+                                            </div>
+                                        </div>
+                                        <div class="media b-b mb15">
+                                            <div class="media-left">
+                                                <span class="avatar avatar-xs">
+            <img src="assets/images/avatar.jpg" alt="..." />
+        </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-heading">
+                                                    <a href="index.php/team_members/view/1" class="dark strong">Demo test</a> <small><span class="text-off">Feb 15 04:15 PM</span></small>
+                                                </div>
+                                                <p>
+                                                    <span class="label label-danger">Deleted</span>
+                                                    <span>Milestone: designing</span>
+                                                </p>
+
+                                                <p> Project: <a href="index.php/projects/view/29" class="dark">CA test </a></p>
+                                            </div>
+                                        </div>
+                                        <div class="media b-b mb15">
+                                            <div class="media-left">
+                                                <span class="avatar avatar-xs">
+            <img src="assets/images/avatar.jpg" alt="..." />
+        </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-heading">
+                                                    <a href="index.php/team_members/view/1" class="dark strong">Demo test</a> <small><span class="text-off">Feb 15 04:15 PM</span></small>
+                                                </div>
+                                                <p>
+                                                    <span class="label label-danger">Deleted</span>
+                                                    <span>Milestone: Requirement gathering</span>
+                                                </p>
+
+                                                <p> Project: <a href="index.php/projects/view/29" class="dark">CA test </a></p>
+                                            </div>
+                                        </div>
+                                        <div class="media b-b mb15">
+                                            <div class="media-left">
+                                                <span class="avatar avatar-xs">
+            <img src="assets/images/avatar.jpg" alt="..." />
+        </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-heading">
+                                                    <a href="index.php/team_members/view/1" class="dark strong">Demo test</a> <small><span class="text-off">Feb 15 04:14 PM</span></small>
+                                                </div>
+                                                <p>
+                                                    <span class="label label-warning">Updated</span>
+                                                    <span>Milestone: Requirement gathering</span>
+                                                    <ul>
+                                                        <li>Due date: <del>2020-02-05</del> <ins>2020-02-01</ins></li>
+                                                    </ul>
+                                                </p>
+
+                                                <p> Project: <a href="index.php/projects/view/29" class="dark">CA test </a></p>
+                                            </div>
+                                        </div>
+                                        <div class="media b-b mb15">
+                                            <div class="media-left">
+                                                <span class="avatar avatar-xs">
+            <img src="assets/images/avatar.jpg" alt="..." />
+        </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-heading">
+                                                    <a href="index.php/team_members/view/28" class="dark strong">gaurav saroj</a> <small><span class="text-off">Feb 15 04:12 PM</span></small>
+                                                </div>
+                                                <p>
+                                                    <span class="label label-warning">Updated</span>
+                                                    <span>Task:  #5 - Requirement gathering</span>
+                                                    <ul>
+                                                        <li>Status: <del>In progress</del> <ins>Done</ins></li>
+                                                    </ul>
+                                                </p>
+
+                                                <p> Project: <a href="index.php/projects/view/29" class="dark">CA test </a></p>
+                                            </div>
+                                        </div>
+                                        <div class="media b-b mb15">
+                                            <div class="media-left">
+                                                <span class="avatar avatar-xs">
+            <img src="assets/images/avatar.jpg" alt="..." />
+        </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="media-heading">
+                                                    <a href="index.php/team_members/view/28" class="dark strong">gaurav saroj</a> <small><span class="text-off">Feb 15 04:10 PM</span></small>
+                                                </div>
+                                                <p>
+                                                    <span class="label label-warning">Updated</span>
+                                                    <span>Task:  #5 - Requirement gathering</span>
+                                                    <ul>
+                                                        <li>Status: <del>To do</del> <ins>In progress</ins></li>
+                                                    </ul>
+                                                </p>
+
+                                                <p> Project: <a href="index.php/projects/view/29" class="dark">CA test </a></p>
+                                            </div>
+                                        </div>
+
+                                        <div id="loadproject10">
+                                            <div class="text-center">
+                                                <a href="#" class="btn btn-default b-a load-more mt15" title="Load more" data-inline-loader="1" data-real-target="#loadproject10" data-act="ajax-request" data-action-url="index.php/projects/history/10/0">Load more</a>                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-3 widget-container">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-bar-chart"></i>&nbsp;Income vs Expenses </div>
+                                <div class="panel-body ">
+                                    <div id="income-expense" style="width: 100%; height: 250px;"></div>
+                                </div>
+                            </div>
+
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    var data = [{
+                                        label: " Income",
+                                        data: "40279272" * 1,
+                                        color: "#00B393"
+                                    }, {
+                                        label: " Expenses",
+                                        data: "87734" * 1,
+                                        color: "#F06C71"
+                                    }];
+
+                                    $.plot('#income-expense', data, {
+                                        series: {
+                                            pie: {
+                                                show: true,
+                                                innerRadius: 0.5
+                                            }
+                                        },
+                                        legend: {
+                                            show: true
+                                        },
+                                        grid: {
+                                            hoverable: true
+                                        },
+                                        tooltip: {
+                                            show: true,
+                                            content: "%s: %p.0%", //%n show percentages, rounding to 2 decimal places
+                                            shifts: {
+                                                x: 20,
+                                                y: 0
+                                            },
+                                            defaultTheme: false
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <div class="col-md-3 widget-container">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-calendar"></i>&nbsp; Events </div>
+                                <div id="upcoming-event-container">
+                                    <div class="panel-body">
+                                        <div style="min-height: 190px;">
+                                            <div class='text-center'>No event found!</div>
+                                            <div class='text-center p15 text-off'><i class='fa fa-calendar' style='font-size:100px;'></i></div>
+                                        </div>
+                                        <div><a href="index.php/events" class="btn btn-default b-a load-more mt15">View on calendar</a></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    $('#upcoming-event-container').slimscroll({
+                                        height: "285px",
+                                        borderRadius: "0",
+                                        color: "#ccc"
+                                    });
+                                });
+                            </script>
+                        </div>
+                        <div class="col-md-3 widget-container">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="fa fa-book"></i>&nbsp; Sticky Note (Private) </div>
+                                <div id="upcoming-event-container">
+                                    <textarea name="note" cols="40" rows="10" id="sticky-note" class="sticky-note"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <script type='text/javascript' src="{% 'assets/js/flot/jquery.flot.min.js' % } "></script>
+                <script type='text/javascript' src="{% 'assets/js/flot/jquery.flot.pie.min.js' % } "></script>
+                <script type='text/javascript' src="{% 'assets/js/flot/jquery.flot.resize.min.js' % } "></script>
+                <script type='text/javascript' src="{% 'assets/js/flot/curvedLines.js' % } "></script>
+                <script type='text/javascript' src="{% 'assets/js/flot/jquery.flot.tooltip.min.js' % } "></script>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $("#sticky-note").change(function() {
+                            $.ajax({
+                                url: "index.php/dashboard/save_sticky_note",
+                                data: {
+                                    sticky_note: $(this).val()
+                                },
+                                cache: false,
+                                type: 'POST'
+                            });
+                        });
+
+                        $('#project-timeline-container').slimscroll({
+                            height: "955px",
+                            borderRadius: "0",
+                            color: "#ccc",
+                            allowPageScroll: true
+                        });
+                        $('#upcoming-event-container').slimscroll({
+                            height: "300px",
+                            borderRadius: "0",
+                            color: "#ccc",
+                            allowPageScroll: true
+                        });
+                    });
+                </script>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal" id="ajaxModal" tabindex="-1" role="dialog" aria-labelledby="ajaxModal" aria-hidden="true">
+        <div class="modal-dialog mini-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="ajaxModalTitle" data-title="CRM"></h4>
+                </div>
+                <div id="ajaxModalContent">
+
+                </div>
+                <div id='ajaxModalOriginalContent' class='hide'>
+                    <div class="original-modal-body">
+                        <div class="circle-loader"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

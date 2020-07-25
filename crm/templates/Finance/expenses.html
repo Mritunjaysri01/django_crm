@@ -1,0 +1,383 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="fairsketch">
+    <link rel="icon" href="https://mindhatsolutions.com/portal/risecrm/assets/images/favicon.png" />
+
+    <title>CRM</title>
+    <script type="text/javascript">
+        AppHelper = {};
+        AppHelper.baseUrl = "https://mindhatsolutions.com/portal/risecrm/";
+        AppHelper.assetsDirectory = "https://mindhatsolutions.com/portal/risecrm/assets/";
+        AppHelper.settings = {};
+        AppHelper.settings.firstDayOfWeek = 1;
+        AppHelper.settings.currencySymbol = "Rs.";
+        AppHelper.settings.decimalSeparator = ".";
+    </script>
+    <link rel='stylesheet' type='text/css' href=" {% 'assets/bootstrap/css/bootstrap.min.css'  %}" />
+    <link rel='stylesheet' type='text/css' href=" {% 'assets/js/font-awesome/css/font-awesome.min.css'  %}" />
+    <link rel='stylesheet' type='text/css' href=" {% 'assets/js/datatable/css/jquery.dataTables.min.css'  %}" />
+    <link rel='stylesheet' type='text/css' href=" {% 'assets/js/datatable/TableTools/css/dataTables.tableTools.min.css'  %}" />
+    <link rel='stylesheet' type='text/css' href=" {% 'assets/js/select2/select2.css'  %}" />
+    <link rel='stylesheet' type='text/css' href=" {% 'assets/js/select2/select2-bootstrap.min.css'  %}" />
+    <link rel='stylesheet' type='text/css' href=" {% 'assets/js/bootstrap-datepicker/css/datepicker3.css'  %}" />
+    <link rel='stylesheet' type='text/css' href=" {% 'assets/js/bootstrap-timepicker/css/bootstrap-timepicker.min.css'  %}" />
+    <link rel='stylesheet' type='text/css' href=" {% 'assets/js/x-editable/css/bootstrap-editable.css'  %}" />
+    <link rel='stylesheet' type='text/css' href=" {% 'assets/css/font.css'  %}" />
+    <link rel='stylesheet' type='text/css' href=" {% 'assets/css/style.css'  %}" />
+    <script type='text/javascript' src=" {% 'assets/js/jquery-1.11.3.min.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/bootstrap/js/bootstrap.min.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/jquery-validation/jquery.validate.min.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/jquery-validation/jquery.form.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/slimscroll/jquery.slimscroll.min.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/datatable/js/jquery.dataTables.min.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/select2/select2.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/datatable/TableTools/js/dataTables.tableTools.min.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/bootstrap-datepicker/js/bootstrap-datepicker.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/bootstrap-timepicker/js/bootstrap-timepicker.min.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/x-editable/js/bootstrap-editable.min.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/fullcalendar/moment.min.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/notificatoin_handler.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/general_helper.js'  %}"></script>
+    <script type='text/javascript' src=" {% 'assets/js/app.min.js'  %}"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="fa fa-cog"></span>
+        </button>
+            <button id="sidebar-toggle" type="button" class="navbar-toggle" data-target="#sidebar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="fa fa-bars"></span>
+        </button>
+            <a class="navbar-brand" href="https://mindhatsolutions.com/portal/risecrm/index.php/dashboard"><img src="https://mindhatsolutions.com/portal/risecrm/files/system/file5e969fdef1e5b-site-logo.png" /></a>
+
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+
+                <li class="hidden-xs pl15 pr15  b-l">
+                    <button class="hidden-xs" id="sidebar-toggle-md">
+                    <span class="fa fa-dedent"></span>
+                </button>
+                </li>
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="hidden-xs ">
+                    <a href="#" id="message-notification-icon" class="dropdown-toggle" data-toggle="dropdown"><i class='fa fa-envelope-o'></i></a>
+                    <div class="dropdown-menu aside-xl m0 p0 w300 font-100p">
+                        <div class="dropdown-details panel bg-white m0">
+                            <div class="list-group">
+                                <span class="list-group-item"> You have no new messages</span>
+                            </div>
+                        </div>
+                        <div class="panel-footer text-sm text-center">
+                            <a href="https://mindhatsolutions.com/portal/risecrm/index.php/messages">See All</a> </div>
+                    </div>
+                </li>
+                <li class="dropdown pr15 dropdown-user">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <span class="avatar-xs avatar pull-left mt-5 mr10">
+                        <img alt="..." src="https://mindhatsolutions.com/portal/risecrm/assets/images/avatar.jpg">
+                    </span>Demo test <span class="caret"></span></a>
+                    <ul class="dropdown-menu p0" role="menu">
+                        <li><a href="https://mindhatsolutions.com/portal/risecrm/index.php/team_members/view/1/general"><i class='fa fa-user mr10'></i>My Profile</a></li>
+                        <li><a href="https://mindhatsolutions.com/portal/risecrm/index.php/team_members/view/1/account"><i class='fa fa-key mr10'></i>Change Password</a></li>
+                        <li class="divider"></li>
+                        <li><a href="https://mindhatsolutions.com/portal/risecrm/index.php/signin/sign_out"><i class="fa fa-power-off mr10"></i> Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </nav>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //load message notifications
+
+            var messageOptions = {},
+                $messageIcon = $("#message-notification-icon");
+
+            messageOptions.notificationUrl = "https://mindhatsolutions.com/portal/risecrm/index.php/messages/get_notifications";
+            messageOptions.notificationStatusUpdateUrl = "https://mindhatsolutions.com/portal/risecrm/index.php/messages/update_notification_checking_status";
+            messageOptions.checkNotificationAfterEvery = "60";
+            messageOptions.notificationSelector = $messageIcon;
+            checkMessageNotifications(messageOptions);
+
+            $messageIcon.click(function() {
+                checkMessageNotifications(messageOptions, true);
+            });
+        });
+    </script>
+    <div id="content" class="box">
+        <div id="sidebar" class="box-content ani-width">
+            <div id="sidebar-scroll">
+                <ul class="" id="sidebar-menu">
+                    <li class="    main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/dashboard">
+                            <i class="fa fa-desktop"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/timeline">
+                            <i class="fa  fa-comments font-18"></i>
+                            <span>Timeline</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/events">
+                            <i class="fa fa-calendar"></i>
+                            <span>Events</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/notes">
+                            <i class="fa fa-book font-16"></i>
+                            <span>Notes</span>
+                        </a>
+                    </li>
+                    <li class="   devider main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/messages">
+                            <i class="fa fa-envelope"></i>
+                            <span>Messages</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/clients">
+                            <i class="fa fa-briefcase"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="  expand    main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/projects">
+                            <i class="fa fa-th-large"></i>
+                            <span>Projects</span>
+                        </a>
+                        <ul>
+                            <li class="">
+                                <a href="https://mindhatsolutions.com/portal/risecrm/index.php/projects/all_projects">
+                                    <i class="dot fa fa-circle"></i>
+                                    <span>All Projects</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="https://mindhatsolutions.com/portal/risecrm/index.php/projects/my_tasks">
+                                    <i class="dot fa fa-circle"></i>
+                                    <span>My Tasks</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="    main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/invoices">
+                            <i class="fa fa-file-text"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="active  expand   open   main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/expenses">
+                            <i class="fa fa-money"></i>
+                            <span>Finance</span>
+                        </a>
+                        <ul>
+                            <li class="">
+                                <a href="https://mindhatsolutions.com/portal/risecrm/index.php/invoice_payments">
+                                    <i class="dot fa fa-circle"></i>
+                                    <span>Payments</span>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="https://mindhatsolutions.com/portal/risecrm/index.php/expenses">
+                                    <i class="dot fa fa-circle"></i>
+                                    <span>Expenses</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="   devider main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/tickets">
+                            <i class="fa fa-life-ring"></i>
+                            <span>Tickets</span>
+                            <span class='badge badge-secondary'>1</span> </a>
+                    </li>
+                    <li class="    main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/team_members">
+                            <i class="fa fa-user font-16"></i>
+                            <span>Team members</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/attendance">
+                            <i class="fa fa-clock-o font-16"></i>
+                            <span>Time cards</span>
+                        </a>
+                    </li>
+                    <li class="   devider main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/leaves">
+                            <i class="fa fa-sign-out font-16"></i>
+                            <span>Leave</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/announcements">
+                            <i class="fa fa-bullhorn"></i>
+                            <span>Announcements</span>
+                        </a>
+                    </li>
+                    <li class="    main">
+                        <a href="https://mindhatsolutions.com/portal/risecrm/index.php/settings/general">
+                            <i class="fa fa-wrench"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- sidebar menu end -->
+        <div id="page-container" class="box-content">
+            <div id="pre-loader">
+                <div id="pre-loade" class="app-loader">
+                    <div class="loading"></div>
+                </div>
+            </div>
+            <div class="scrollable-page">
+                <div id="page-content" class="clearfix m20">
+                    <div class="panel clearfix">
+                        <ul data-toggle="ajax-tab" class="nav nav-tabs bg-white inner" role="tablist">
+                            <li class="title-tab">
+                                <h4 class="pl15 pt5 pr15">Expenses</h4>
+                            </li>
+                            <li><a id="monthly-expenses-button" role="presentation" class="active" href="javascript:;" data-target="#monthly-expenses">Monthly</a></li>
+                            <li><a role="presentation" href="https://mindhatsolutions.com/portal/risecrm/index.php/expenses/yearly" data-target="#yearly-expenses">Yearly</a></li>
+                            <div class="tab-title clearfix no-border">
+                                <div class="title-button-group">
+                                    <a href="#" class="btn btn-default mb0" title="Add expense" data-act="ajax-modal" data-title="Add expense" data-action-url="https://mindhatsolutions.com/portal/risecrm/index.php/expenses/modal_form"><i class='fa fa-plus-circle'></i> Add expense</a>                                    </div>
+                            </div>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade" id="monthly-expenses">
+                                <div class="table-responsive">
+                                    <table id="monthly-expense-table" class="display" cellspacing="0" width="100%">
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="3" class="text-right">Total:</th>
+                                                <th class="text-right" data-current-page="3"></th>
+                                                <th> </th>
+                                            </tr>
+                                            <tr data-section="all_pages">
+                                                <th colspan="3" class="text-right">Total of all pages:</th>
+                                                <th class="text-right" data-all-page="3"></th>
+                                                <th> </th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="yearly-expenses"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="panel clearfix">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade" id="team_member-monthly-leaves">
+                            <table id="monthly-leaves-table" class="display" cellspacing="0" width="100%">
+                            </table>
+                            <script type="text/javascript">
+                                loadExpensesTable = function(selector, dateRange) {
+                                    $(selector).appTable({
+                                        source: 'https://mindhatsolutions.com/portal/risecrm/index.php/expenses/list_data',
+                                        dateRangeType: dateRange,
+                                        filterDropdown: [{
+                                            name: "category_id",
+                                            class: "w200",
+                                            options: [{
+                                                "id": "",
+                                                "text": "- Category -"
+                                            }, {
+                                                "id": "3",
+                                                "text": "Hotel Bill"
+                                            }, {
+                                                "id": "4",
+                                                "text": "salary"
+                                            }, {
+                                                "id": "5",
+                                                "text": "Rent"
+                                            }]
+                                        }],
+                                        columns: [{
+                                            title: 'Date'
+                                        }, {
+                                            title: 'Category'
+                                        }, {
+                                            title: 'Description'
+                                        }, {
+                                            title: 'Amount',
+                                            "class": "text-right"
+                                        }, {
+                                            title: '<i class="fa fa-bars"></i>',
+                                            "class": "text-center option w100"
+                                        }, ],
+                                        printColumns: [0, 1, 2, 3],
+                                        xlsColumns: [0, 1, 2, 3],
+                                        summation: [{
+                                            column: 3,
+                                            dataType: 'currency'
+                                        }]
+                                    });
+                                };
+
+                                $(document).ready(function() {
+                                    $("#monthly-expenses-button").trigger("click");
+                                    loadExpensesTable("#monthly-expense-table", "monthly");
+                                });
+                            </script>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="team_member-yearly-leaves"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal" id="ajaxModal" tabindex="-1" role="dialog" aria-labelledby="ajaxModal" aria-hidden="true">
+        <div class="modal-dialog mini-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="ajaxModalTitle" data-title="CRM"></h4>
+                </div>
+                <div id="ajaxModalContent">
+
+                </div>
+                <div id='ajaxModalOriginalContent' class='hide'>
+                    <div class="original-modal-body">
+                        <div class="circle-loader"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
